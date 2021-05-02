@@ -1,0 +1,14 @@
+{% extends "base.html" %} 
+{% block container %}
+
+{% for post in post_list %}
+<div class="ui text justified container" style="overflow-wrap: break-word;">
+  <h3 class="ui header">{{ post.title }}</h3>
+  <p class="meta">{{ post.author }} | {{ post.created_on}}</p>
+  <p>{{post.content|slice:":200"|safe }}</p>
+  <a class="ui large button" href="{% url 'post_detail' post.slug  %}">Read More</a>
+  <div class="ui section divider"></div>
+</div>
+{% endfor %} 
+
+{% endblock container %}
