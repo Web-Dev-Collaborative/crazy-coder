@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "posts",
+    "home",
     "ckeditor",
     "ckeditor_uploader",
     "admin_interface",
@@ -145,6 +146,7 @@ FILE_UPLOAD_PERMISSIONS = 0o644
 ADMIN_MEDIA_PREFIX = "/static/admin/"
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_ALLOW_NONIMAGE_FILES = False
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -158,6 +160,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 #         'skin': 'light',                 
 #     },
 # }
+
 
 CKEDITOR_CONFIGS = {
     "default": {

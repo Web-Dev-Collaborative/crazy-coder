@@ -54,19 +54,20 @@
         {% block header %}
         <div class="ui text container">
           <h1 class="ui inverted header">Crazy Coder</h1>
-          <div class="ui center aligned basic segment">
-            <div class="ui left icon action input">
-              <i class="search icon"></i>
-              <input type="text" placeholder="subscribe  #" />
-              <div class="ui blue submit button">subscribe</div>
-            </div>
+              <form class="ui center aligned basic segment" action="{% url 'subscribe' %}" method="POST">
+                  {% csrf_token %}
+                  <div class="ui left icon action input">
+                    <i class="search icon"></i>
+                    <input type="text" placeholder="subscribe  #" />
+                    </div>
+                    <button type="submit" class="ui right attached  blue submit button">subscribe</button>
+              </form>
           </div>
-        </div>
         {% endblock header %}
       </div>
     </div>
 
-      <div class="ui vertical stripe  container">
+      <div class="ui vertical stripe container">
         {% block container %} {% endblock container %}
       </div>
       {% include 'snippets/footer.html' %}
