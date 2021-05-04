@@ -18,6 +18,10 @@ from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import never_cache
+from ckeditor_uploader import views as ckeditor_views
+
 ###for error 404 ##################
 from django.conf.urls import handler404, handler500
 
@@ -28,7 +32,7 @@ from django.conf.urls import handler404, handler500
 ################admin setting####################
 admin.site.site_header = "crazy coder admin"
 admin.site.site_title = "crazy coder admin"
-# admin.site.site_url = 'http://coffeehouse.com/'
+admin.site.site_url = 'http://coffeehouse.com/'
 admin.site.index_title = "Welcome vinayak"
 admin.empty_value_display = "**Empty**"
 
@@ -41,6 +45,7 @@ admin.empty_value_display = "**Empty**"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("posts.urls")),
-    re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    re_path(r'^ckeditor/upload/', login_required(ckeditor_views.upload), name='ckeditor_upload'),
+    re_path(r'^ckeditor/browse/', never_cache(login_required(ckeditor_views.browse)), name='ckeditor_browse'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
